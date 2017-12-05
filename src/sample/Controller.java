@@ -15,10 +15,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable{
     @FXML
     ComboBox cmbMetodos;
-
-    @FXML
-    Label lblNumerosOrdenados;
-
+    
     @FXML
     ListView listNumeros;
 
@@ -48,7 +45,6 @@ public class Controller implements Initializable{
                 if(cmbMetodos.getValue().equals("")){
                     return;
                 }else {
-                    //lblNumerosOrdenados.setText(arbol.preOrden(raiz));
                     listNumeros.getItems().addAll(arbol.preOrden(raiz));
                 }
             }
