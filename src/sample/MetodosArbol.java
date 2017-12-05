@@ -7,13 +7,15 @@ public class MetodosArbol {
 
     private int size=0;
 
-    public void preOrden(Nodo raiz){
+    public int preOrden(Nodo raiz){
+        int valor = 0;
         if(raiz != null){
-            size++;
-            System.out.print(raiz.getValor() + " ");
+
+            valor = raiz.getValor();
             preOrden(raiz.getNodoIzquierdo());
             preOrden(raiz.getNodoDerecho());
         }
+        return valor;
     }
 
     public void inOrden(Nodo raiz){
