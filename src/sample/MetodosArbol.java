@@ -1,26 +1,48 @@
 package sample;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+
+import javax.swing.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by juam_ on 27/11/2017.
  */
 public class MetodosArbol {
 
     private int size=0;
+    public ListView listNumeros = new ListView();
+    public ArrayList<Integer> arrayList = new ArrayList<Integer>();
+    private int i = 0;
 
-    public int preOrden(Nodo raiz){
-        int valor = 0;
-        if(raiz != null){
+    public void preOrden(Nodo raiz){
+        try {
+            if(raiz != null){
 
-            valor = raiz.getValor();
-            preOrden(raiz.getNodoIzquierdo());
-            preOrden(raiz.getNodoDerecho());
+                arrayList.add(raiz.getValor());
+                i++;
+                preOrden(raiz.getNodoIzquierdo());
+                preOrden(raiz.getNodoDerecho());
+
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
-        return valor;
+
+    }
+    public void limpiarArrayList(){
+        arrayList.clear();
+    }
+
+    public ArrayList auxiliarArrayList(){
+        return arrayList;
     }
 
     public void inOrden(Nodo raiz){
         if(raiz != null){
-            size++;
             inOrden(raiz.getNodoIzquierdo());
             System.out.print(raiz.getValor() + " ");
             inOrden(raiz.getNodoDerecho());
@@ -29,7 +51,6 @@ public class MetodosArbol {
 
     public void postOrden(Nodo raiz){
         if(raiz != null){
-            size++;
             postOrden(raiz.getNodoIzquierdo());
             postOrden(raiz.getNodoDerecho());
             System.out.print(raiz.getValor() + " ");
@@ -37,6 +58,6 @@ public class MetodosArbol {
     }
 
     public int getSize() {
-        return size;
+        return arrayList.size();
     }
 }
