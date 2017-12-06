@@ -7,9 +7,14 @@ public class Nodo {
 
     private Nodo nodoIzquierdo = null, nodoDerecho = null;
     private int valor;
+    private int tam;
 
     public Nodo(int valor) {
         this.valor = valor;
+        tam++;
+    }
+    public int getTam(){
+        return tam;
     }
 
     public Nodo getNodoIzquierdo() {

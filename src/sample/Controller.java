@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.net.URL;
@@ -14,10 +12,13 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
     @FXML
-    ComboBox cmbMetodos;
-    
+    ComboBox cmbMetodos;    // Inicialización de componente comboBox
+
     @FXML
-    ListView listNumeros;
+    ListView listNumeros;   // Inicialización de componente listView
+
+    @FXML
+    Button btnTotalNodos;   // Inicialización de componente Button
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,11 +43,45 @@ public class Controller implements Initializable{
         this.cmbMetodos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                listNumeros.getItems().clear();
+                arbol.limpiarArrayList();
                 if(cmbMetodos.getValue().equals("")){
                     return;
                 }else {
-                    listNumeros.getItems().addAll(arbol.preOrden(raiz));
+
+                    switch (cmbMetodos.getValue().toString()){
+                        case "Pre Orden":
+                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            listNumeros.getItems().addAll(arbol.auxiliarArrayList());
+                            break;
+                        case "In Orden":
+                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            listNumeros.getItems().addAll(arbol.auxiliarArrayList());
+                            break;
+                        case "Post Orden":
+                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            listNumeros.getItems().addAll(arbol.auxiliarArrayList());
+                            break;
+                        default:
+                            Alert alert = new Alert(Alert.AlertType.ERROR);   // Mensaje de información tipo alert
+                            alert.setTitle("Administración de Árbol");
+                            alert.setHeaderText("Métodos de Ordenamiento");
+                            alert.setContentText("Opción Incorrecta");
+                            alert.showAndWait();
+
+                    }
                 }
+            }
+        });
+
+        this.btnTotalNodos.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
+                alert.setTitle("Administración de Árbol");
+                alert.setHeaderText("Total de Nodos");
+                alert.setContentText("Nodos en el árbol:  " + arbol.getSize());
+                alert.showAndWait();
             }
         });
 
