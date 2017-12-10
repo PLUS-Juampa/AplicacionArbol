@@ -13,6 +13,19 @@ import java.util.ArrayList;
  */
 public class MetodosArbol {
 
+    //Metodo Buscar... Angel Enrique
+
+    public boolean buscar(int valorBuscado){
+        for(int i=0; i<arrayList.size(); i++){
+            if(arrayList.get(i) == valorBuscado){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
     private int size=0;
     public ListView listNumeros = new ListView();
     public ArrayList<Integer> arrayList = new ArrayList<Integer>();

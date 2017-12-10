@@ -18,7 +18,10 @@ public class Controller implements Initializable{
     ListView listNumeros;   // Inicialización de componente listView
 
     @FXML
-    Button btnTotalNodos;   // Inicialización de componente Button
+    Button btnTotalNodos, btnBuscar;   // Inicialización de componente Button
+
+    @FXML
+    TextField txtBuscar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,6 +73,46 @@ public class Controller implements Initializable{
                             alert.showAndWait();
 
                     }
+                }
+            }
+        });
+
+        this.btnBuscar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    if(txtBuscar.getText().isEmpty()){
+                        Alert alert = new Alert(Alert.AlertType.WARNING);   // Mensaje de información tipo alert
+                        alert.setTitle("Búsqueda de Elemento");
+                        alert.setHeaderText("Nodos en Árbol");
+                        alert.setContentText("El campo de texto no debe estar vacío");
+                        alert.showAndWait();
+                        txtBuscar.requestFocus();
+                    }else {
+                        if(arbol.buscar(Integer.parseInt(txtBuscar.getText()))){
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
+                            alert.setTitle("Búsqueda de Elemento");
+                            alert.setHeaderText("Nodos en Árbol");
+                            alert.setContentText("El número " + txtBuscar.getText() + " fue encontrado en el árbol");
+                            alert.showAndWait();
+                            txtBuscar.setText("");
+                        }else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
+                            alert.setTitle("Búsqueda de Elemento");
+                            alert.setHeaderText("Nodos en Árbol");
+                            alert.setContentText("El número " + txtBuscar.getText() + " es inexistente en árbol");
+                            alert.showAndWait();
+                            txtBuscar.setText("");
+                        }
+                    }
+                }catch (Exception e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);   // Mensaje de información tipo alert
+                    alert.setTitle("Búsqueda de Elemento");
+                    alert.setHeaderText("Nodos en Árbol");
+                    alert.setContentText("Sólo se pueden ingresar números enteros");
+                    alert.showAndWait();
+                    txtBuscar.setText("");
+                    txtBuscar.requestFocus();
                 }
             }
         });
