@@ -18,10 +18,9 @@ public class Controller implements Initializable{
     ListView listNumeros;   // Inicialización de componente listView
 
     @FXML
-    Button btnTotalNodos, btnBuscar;   // Inicialización de componente Button
-
-    @FXML
     TextField txtBuscar;
+
+    Button btnTotalNodos, btnMaximo, btnMinimo, btnBuscar;   // Inicialización de componente Button
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +57,7 @@ public class Controller implements Initializable{
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         case "In Orden":
-                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            arbol.inOrden(raiz);   // Llamada a método de ordenamiento
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         case "Post Orden":
@@ -124,6 +123,29 @@ public class Controller implements Initializable{
                 alert.setTitle("Administración de Árbol");
                 alert.setHeaderText("Total de Nodos");
                 alert.setContentText("Nodos en el árbol:  " + arbol.getSize());
+                alert.showAndWait();
+            }
+        });
+
+        //Mètodo para mandar en pantalla el valor màximo en los nodos
+        this.btnMaximo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
+                alert.setTitle("Administración de Árbol");
+                alert.setHeaderText("Control de Nodos");
+                alert.setContentText("El valor màximo en los nodos es:  " + arbol.valorMaximo());
+                alert.showAndWait();
+            }
+        });
+        //Mètodo para mandar en pantalla el valor mìnimo en los nodos
+        this.btnMinimo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
+                alert.setTitle("Administración de Árbol");
+                alert.setHeaderText("Control de Nodos");
+                alert.setContentText("El valor mìnimo en los nodos es:  " + arbol.valorMinimo());
                 alert.showAndWait();
             }
         });
