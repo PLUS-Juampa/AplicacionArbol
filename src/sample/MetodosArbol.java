@@ -16,14 +16,33 @@ public class MetodosArbol {
     private int size=0;
     public ListView listNumeros = new ListView();
     public ArrayList<Integer> arrayList = new ArrayList<Integer>();
-    private int i = 0;
+    private int maximo;
+    private int minimo;
+
+    public int valorMaximo(){
+        for(int i=0; i<arrayList.size(); i++){
+            if(arrayList.get(i) > maximo){
+                maximo = arrayList.get(i);
+            }
+        }
+        return maximo;
+    }
+
+    public int valorMinimo(){
+        for (int i=0; i<arrayList.size(); i++){
+            if(arrayList.get(i) < minimo){
+                minimo = arrayList.get(i);
+            }
+        }
+        return minimo;
+    }
 
     public void preOrden(Nodo raiz){
         try {
             if(raiz != null){
-
                 arrayList.add(raiz.getValor());
-                i++;
+                maximo = arrayList.get(0);
+                minimo = raiz.getValor();
                 preOrden(raiz.getNodoIzquierdo());
                 preOrden(raiz.getNodoDerecho());
 
@@ -44,7 +63,9 @@ public class MetodosArbol {
     public void inOrden(Nodo raiz){
         if(raiz != null){
             inOrden(raiz.getNodoIzquierdo());
-            System.out.print(raiz.getValor() + " ");
+            arrayList.add(raiz.getValor());
+            maximo = arrayList.get(0);
+            minimo = raiz.getValor();
             inOrden(raiz.getNodoDerecho());
         }
     }
