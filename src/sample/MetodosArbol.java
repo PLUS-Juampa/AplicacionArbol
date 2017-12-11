@@ -13,17 +13,12 @@ import java.util.ArrayList;
  */
 public class MetodosArbol {
 
-    private int size=0;
-    public ListView listNumeros = new ListView();
-    public ArrayList<Integer> arrayList = new ArrayList<Integer>();
-    private int i = 0;
+    private ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
     public void preOrden(Nodo raiz){
         try {
             if(raiz != null){
-
                 arrayList.add(raiz.getValor());
-                i++;
                 preOrden(raiz.getNodoIzquierdo());
                 preOrden(raiz.getNodoDerecho());
 
@@ -53,7 +48,9 @@ public class MetodosArbol {
         if(raiz != null){
             postOrden(raiz.getNodoIzquierdo());
             postOrden(raiz.getNodoDerecho());
-            System.out.print(raiz.getValor() + " ");
+            arrayList.add(raiz.getValor());
+            //maximo = arrayList.get(0);
+            //minimo = raiz.getValor();
         }
     }
 

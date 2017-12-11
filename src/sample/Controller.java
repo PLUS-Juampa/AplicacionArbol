@@ -18,12 +18,16 @@ public class Controller implements Initializable{
     ListView listNumeros;
 
     @FXML
-    Button btnTotalNodos;
+    Button btnTotalNodos, btnMaximo, btnMinimo, btnAgregar;
+
+    @FXML
+    TextField txtAgregar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         cmbMetodos.getItems().addAll("Pre Orden","In Orden", "Post Orden");
+
 
         MetodosArbol arbol = new MetodosArbol();
 
@@ -39,6 +43,8 @@ public class Controller implements Initializable{
 
         raiz.setNodoIzquierdo(nodo2);
         raiz.setNodoDerecho(nodo3);
+
+        arbol.preOrden(raiz);   // Inicialización de árbol en ArrayList de clase MetodosArbol
 
         this.cmbMetodos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -58,7 +64,7 @@ public class Controller implements Initializable{
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         case "Post Orden":
-                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            arbol.postOrden(raiz);   // Llamada a método de ordenamiento
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         default:
@@ -81,6 +87,20 @@ public class Controller implements Initializable{
                 alert.setHeaderText("Total de Nodos");
                 alert.setContentText("Nodos en el árbol:  " + arbol.getSize());
                 alert.showAndWait();
+            }
+        });
+
+        this.btnAgregar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);   // Mensaje de información tipo alert
+                alert.setTitle("Agregar Número");
+                alert.setHeaderText("Control de Nodos");
+                alert.setContentText("Por el momento no se puede ingresar un valor al árbol");
+                alert.showAndWait();
+                txtAgregar.setText("");
+                txtAgregar.requestFocus();
+
             }
         });
 
