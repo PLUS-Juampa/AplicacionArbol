@@ -13,6 +13,10 @@ import java.util.ArrayList;
  */
 public class MetodosArbol {
 
+    public ArrayList<Integer> arrayList = new ArrayList<Integer>();
+    private int maximo;
+    private int minimo;
+
     //Metodo Buscar... Angel Enrique
 
     public boolean buscar(int valorBuscado){
@@ -23,14 +27,6 @@ public class MetodosArbol {
         }
         return false;
     }
-
-
-
-    private int size=0;
-    public ListView listNumeros = new ListView();
-    public ArrayList<Integer> arrayList = new ArrayList<Integer>();
-    private int maximo;
-    private int minimo;
 
     public int valorMaximo(){
         for(int i=0; i<arrayList.size(); i++){
@@ -87,7 +83,9 @@ public class MetodosArbol {
         if(raiz != null){
             postOrden(raiz.getNodoIzquierdo());
             postOrden(raiz.getNodoDerecho());
-            System.out.print(raiz.getValor() + " ");
+            arrayList.add(raiz.getValor());
+            //maximo = arrayList.get(0);
+            //minimo = raiz.getValor();
         }
     }
 

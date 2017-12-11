@@ -18,14 +18,16 @@ public class Controller implements Initializable{
     ListView listNumeros;   // Inicialización de componente listView
 
     @FXML
-    TextField txtBuscar;
+    TextField txtBuscar, txtAgregar;
 
-    Button btnTotalNodos, btnMaximo, btnMinimo, btnBuscar;   // Inicialización de componente Button
+    @FXML
+    Button btnTotalNodos, btnMaximo, btnMinimo, btnBuscar, btnAgregar;   // Inicialización de componente Button
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        cmbMetodos.getItems().addAll("Pre Orden","In Orden", "Post Orden");
+        cmbMetodos.getItems().addAll("Pre Orden", "In Orden", "Post Orden");
+
 
         MetodosArbol arbol = new MetodosArbol();
 
@@ -42,16 +44,18 @@ public class Controller implements Initializable{
         raiz.setNodoIzquierdo(nodo2);
         raiz.setNodoDerecho(nodo3);
 
+        arbol.preOrden(raiz);   // Inicialización de árbol en ArrayList de clase MetodosArbol
+
         this.cmbMetodos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 listNumeros.getItems().clear();
                 arbol.limpiarArrayList();
-                if(cmbMetodos.getValue().equals("")){
+                if (cmbMetodos.getValue().equals("")) {
                     return;
-                }else {
+                } else {
 
-                    switch (cmbMetodos.getValue().toString()){
+                    switch (cmbMetodos.getValue().toString()) {
                         case "Pre Orden":
                             arbol.preOrden(raiz);   // Llamada a método de ordenamiento
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
@@ -61,7 +65,7 @@ public class Controller implements Initializable{
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         case "Post Orden":
-                            arbol.preOrden(raiz);   // Llamada a método de ordenamiento
+                            arbol.postOrden(raiz);   // Llamada a método de ordenamiento
                             listNumeros.getItems().addAll(arbol.auxiliarArrayList());
                             break;
                         default:
@@ -80,22 +84,22 @@ public class Controller implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    if(txtBuscar.getText().isEmpty()){
+                    if (txtBuscar.getText().isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);   // Mensaje de información tipo alert
                         alert.setTitle("Búsqueda de Elemento");
                         alert.setHeaderText("Nodos en Árbol");
                         alert.setContentText("El campo de texto no debe estar vacío");
                         alert.showAndWait();
                         txtBuscar.requestFocus();
-                    }else {
-                        if(arbol.buscar(Integer.parseInt(txtBuscar.getText()))){
+                    } else {
+                        if (arbol.buscar(Integer.parseInt(txtBuscar.getText()))) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
                             alert.setTitle("Búsqueda de Elemento");
                             alert.setHeaderText("Nodos en Árbol");
                             alert.setContentText("El número " + txtBuscar.getText() + " fue encontrado en el árbol");
                             alert.showAndWait();
                             txtBuscar.setText("");
-                        }else {
+                        } else {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
                             alert.setTitle("Búsqueda de Elemento");
                             alert.setHeaderText("Nodos en Árbol");
@@ -104,7 +108,7 @@ public class Controller implements Initializable{
                             txtBuscar.setText("");
                         }
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);   // Mensaje de información tipo alert
                     alert.setTitle("Búsqueda de Elemento");
                     alert.setHeaderText("Nodos en Árbol");
@@ -127,6 +131,7 @@ public class Controller implements Initializable{
             }
         });
 
+
         //Mètodo para mandar en pantalla el valor màximo en los nodos
         this.btnMaximo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -147,6 +152,19 @@ public class Controller implements Initializable{
                 alert.setHeaderText("Control de Nodos");
                 alert.setContentText("El valor mìnimo en los nodos es:  " + arbol.valorMinimo());
                 alert.showAndWait();
+            }
+        });
+
+        this.btnAgregar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);   // Mensaje de información tipo alert
+                alert.setTitle("Agregar Número");
+                alert.setHeaderText("Control de Nodos");
+                alert.setContentText("Por el momento no se puede ingresar un valor al árbol");
+                alert.showAndWait();
+                txtAgregar.setText("");
+                txtAgregar.requestFocus();
             }
         });
 
