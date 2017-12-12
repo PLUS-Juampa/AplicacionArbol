@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 725, 520));
         primaryStage.show();
     }
-    // Comentarios
+    //  Clase Main para la ejecución del programa utilizando la interfaz sample.fxml
 
     public static void main(String[] args) {
         launch(args);

@@ -17,7 +17,7 @@
   <children>
     <Pane prefHeight="521.0" prefWidth="729.0" style="-fx-background-color: #060a30;">
       <children>
-        <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="34.58203125" prefWidth="570.0" text="Árboles" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="38.0" prefWidth="690.0" text="Árboles" textFill="WHITE">
           <font>
             <Font size="26.0" />
           </font>
