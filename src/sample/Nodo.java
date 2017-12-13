@@ -3,7 +3,7 @@ package sample;
 public class Nodo {
 
     private Nodo nodoIzquierdo = null, nodoDerecho = null; // Instancias de la clase Nodo
-    private int valor;  // declaración de variable valor de ipo entero
+    private int valor;  // declaración de variable valor de tipo entero
 
     public Nodo(int valor) {    // Constructor con parámetro tipo entero
         this.valor = valor;

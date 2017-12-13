@@ -7,9 +7,9 @@ public class MetodosArbol {
 
     public ArrayList<Integer> arrayList = new ArrayList<Integer>(); //  Declaración de nueva ArrayList para almacenar elementos del árbol
     private int maximo; // Variable tipo entero para almacenar el valor más grande en los nodos del árbol
-    private int minimo; // Variable tipo entero para almacenar el valor más grande en los nodos del árbol
+    private int minimo; // Variable tipo entero para almacenar el valor más pequeño en los nodos del árbol
 
-    //Metodo Buscar que devolverá una variable tipo boolean en caso de encontrar el valor que se manda como parámetro
+    //Método Buscar que devolverá una variable tipo boolean en caso de encontrar el valor que se manda como parámetro
     public boolean buscar(int valorBuscado){    // Comparará todos los nodos del árbol en caso de ser igual al parámetro retornará verdadero
         for(int i=0; i<arrayList.size(); i++){
             if(arrayList.get(i) == valorBuscado){
@@ -20,7 +20,7 @@ public class MetodosArbol {
     }
 
     public int valorMaximo(){   // Método para devolver el valor entero que corresponda al valor máximo
-        // Se reoorren todos los nodos del árbol, en caso de que ese valor sea más grande que la variable, se asigna el valor a la misma variable
+        // Se recorren todos los nodos del árbol, en caso de que ese valor sea más grande que la variable, se asigna el valor a la misma variable
         for(int i=0; i<arrayList.size(); i++){
             if(arrayList.get(i) > maximo){
                 maximo = arrayList.get(i);
@@ -30,7 +30,7 @@ public class MetodosArbol {
     }
 
     public int valorMinimo(){   // Método para devolver el valor entero que corresponda al valor mínimo
-        // Se reoorren todos los nodos del árbol, en caso de que ese valor sea menor que la variable, se asigna el valor a la misma variable
+        // Se recorren todos los nodos del árbol, en caso de que ese valor sea menor que la variable, se asigna el valor a la misma variable
         for (int i=0; i<arrayList.size(); i++){
             if(arrayList.get(i) < minimo){
                 minimo = arrayList.get(i);
@@ -44,7 +44,7 @@ public class MetodosArbol {
         if(raiz != null){
             arrayList.add(raiz.getValor()); // Se llenará el ArrayList dependiendo de la recursividad del método
             maximo = arrayList.get(0);  // Asignación de valor a variable maximo con el primer valor en el ArrayList
-            minimo = raiz.getValor();   // Asignación de valor a variable minimo con el valor del nodo raiz del árbol
+            minimo = raiz.getValor();   // Asignación de valor a variable minimo con el valor del nodo raíz del árbol
             preOrden(raiz.getNodoIzquierdo());
             preOrden(raiz.getNodoDerecho());
         }
@@ -76,7 +76,7 @@ public class MetodosArbol {
             postOrden(raiz.getNodoDerecho());
             arrayList.add(raiz.getValor()); // Se llenará el ArrayList dependiendo de la recursividad del método
             maximo = arrayList.get(0);  // Asignación de valor a variable maximo con el primer valor en el ArrayList
-            minimo = raiz.getValor();   // Asignación de valor a variable minimo con el valor del nodo raiz del árbol
+            minimo = raiz.getValor();   // Asignación de valor a variable minimo con el valor del nodo raíz del árbol
         }
     }
 

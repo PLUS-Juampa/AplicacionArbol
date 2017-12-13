@@ -29,18 +29,18 @@ public class Controller implements Initializable{
 
         MetodosArbol arbol = new MetodosArbol();    // Declaración de instancia de clase MetodosArbol
 
-        Nodo raiz = new Nodo(1);    // Declaración de instancia de clase Nodo y asignación de valor a raiz
+        Nodo raiz = new Nodo(1);    // Declaración de instancia de clase Nodo y asignación de valor a raíz
 
-        Nodo nodo2 = new Nodo(2);   // Declaración de instancia de clase Nodo y asignación de valor a raiz de rama secundaria
-        Nodo nodo3 = new Nodo(3);   // Declaración de instancia de clase Nodo y asignación de valor a raiz de rama secundaria
+        Nodo nodo2 = new Nodo(2);   // Declaración de instancia de clase Nodo y asignación de valor a raíz de rama secundaria
+        Nodo nodo3 = new Nodo(3);   // Declaración de instancia de clase Nodo y asignación de valor a raíz de rama secundaria
 
         nodo3.setNodoDerecho(new Nodo(6));  // Asignación de nuevo valor a rama secundaria derecha de la instancia nodo3
         nodo3.setNodoIzquierdo(new Nodo(5));    // Asignación de nuevo valor a rama secundaria izquierda de la instancia nodo3
 
         nodo2.setNodoIzquierdo(new Nodo(4));// Asignación de nuevo valor a rama secundaria izquierda de la instancia nodo2
 
-        raiz.setNodoIzquierdo(nodo2);   // Asignación de nuevo valor a rama secundaria izquierda de la raiz del árbol
-        raiz.setNodoDerecho(nodo3); // Asignación de nuevo valor a rama secundaria derecha de la raiz del árbol
+        raiz.setNodoIzquierdo(nodo2);   // Asignación de nuevo valor a rama secundaria izquierda de la raíz del árbol
+        raiz.setNodoDerecho(nodo3); // Asignación de nuevo valor a rama secundaria derecha de la raíz del árbol
 
         arbol.preOrden(raiz);   // Llamada al método preOrden de instancia arbol para asignación de valores iniciales
 
@@ -58,7 +58,7 @@ public class Controller implements Initializable{
                             break;
                         case "In Orden":    // En caso de ser este valor
                             arbol.inOrden(raiz);   // Llamada a método de ordenamiento InOrden
-                            listNumeros.getItems().addAll(arbol.auxiliarArrayList());   // Los valores se almacenan en el ListVoew
+                            listNumeros.getItems().addAll(arbol.auxiliarArrayList());   // Los valores se almacenan en el ListView
                             break;
                         case "Post Orden":  // En caso de ser este valor
                             arbol.postOrden(raiz);   // Llamada a método de ordenamiento PostOrden
@@ -81,19 +81,19 @@ public class Controller implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    if (txtBuscar.getText().isEmpty()) {    // En caso de que el campo txtBuscar esté vacío mandarpa un mensaje de advertencia
+                    if (txtBuscar.getText().isEmpty()) {    // En caso de que el campo txtBuscar esté vacío mandará un mensaje de advertencia
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Búsqueda de Elemento");
                         alert.setHeaderText("Nodos en Árbol");
                         alert.setContentText("El campo de texto no debe estar vacío");
                         alert.showAndWait();
                         txtBuscar.requestFocus();
-                    } else {    // En caso de que exista un valor en campo txtBuscar se ejecutará lo siquiente
+                    } else {    // En caso de que exista un valor en campo txtBuscar se ejecutará lo siguiente
                         if (arbol.buscar(Integer.parseInt(txtBuscar.getText()))) {  // Sí el valor devuelto de la invocación del método es verdadero
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
                             alert.setTitle("Búsqueda de Elemento");
                             alert.setHeaderText("Nodos en Árbol");
-                            alert.setContentText("El número " + txtBuscar.getText() + " fue encontrado en el árbol");   // Mandará confirmación de que se encotró el elemento en los nodos del árbol
+                            alert.setContentText("El número " + txtBuscar.getText() + " fue encontrado en el árbol");   // Mandará confirmación de que se encontró el elemento en los nodos del árbol
                             alert.showAndWait();
                             txtBuscar.setText("");
                         } else {    // En caso de no ser encontrado el valor mandará un mensaje de inexistencia de valor
@@ -105,7 +105,7 @@ public class Controller implements Initializable{
                             txtBuscar.setText("");
                         }
                     }
-                } catch (Exception e) { // En caso de que el valor eb campo txtBuscar no sea de tipo entero mandará un mensaje de error
+                } catch (Exception e) { // En caso de que el valor en campo txtBuscar no sea de tipo entero mandará un mensaje de error
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Búsqueda de Elemento");
                     alert.setHeaderText("Nodos en Árbol");
@@ -129,26 +129,26 @@ public class Controller implements Initializable{
             }
         });
 
-        //Mètodo para mandar en pantalla el valor màximo en los nodos
+        //Método para mandar en pantalla el valor máximo en los nodos
         this.btnMaximo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
                 alert.setTitle("Administración de Árbol");
                 alert.setHeaderText("Control de Nodos");
-                alert.setContentText("El valor màximo en los nodos es:  " + arbol.valorMaximo());   // Llamada al método
+                alert.setContentText("El valor máximo en los nodos es:  " + arbol.valorMaximo());   // Llamada al método
                 alert.showAndWait();
             }
         });
 
-        //Mètodo para mandar en pantalla el valor mìnimo en los nodos
+        //Método para mandar en pantalla el valor mínimo en los nodos
         this.btnMinimo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);   // Mensaje de información tipo alert
                 alert.setTitle("Administración de Árbol");
                 alert.setHeaderText("Control de Nodos");
-                alert.setContentText("El valor mìnimo en los nodos es:  " + arbol.valorMinimo());   // Llamada al método
+                alert.setContentText("El valor mínimo en los nodos es:  " + arbol.valorMinimo());   // Llamada al método
                 alert.showAndWait();
             }
         });
